@@ -30,11 +30,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String email, Instant dataCriacao) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.dataCriacao = dataCriacao;
+    public Usuario(String nome, String email) {
     }
 
     public Long getId() {
