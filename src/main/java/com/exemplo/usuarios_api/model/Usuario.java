@@ -2,7 +2,6 @@ package com.exemplo.usuarios_api.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
@@ -14,12 +13,10 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório")
     @Column(nullable = false, length = 120)
     private String nome;
 
     @Email(message = "Formato de email inválido")
-    @NotBlank(message = "Email é obrigatório")
     @Column(nullable = false, unique = true, length = 180)
     private String email;
 
@@ -31,6 +28,8 @@ public class Usuario {
     }
 
     public Usuario(String nome, String email) {
+        this.nome = nome;
+        this.email = email;
     }
 
     public Long getId() {

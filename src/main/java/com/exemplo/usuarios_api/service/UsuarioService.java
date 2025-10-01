@@ -23,8 +23,8 @@ public class UsuarioService {
             throw new EmailAlreadyExistsException(dto.getEmail());
         }
 
-        Usuario usuario = repository.save(new Usuario(dto.getNome(), dto.getEmail()));
-        return toResponseDTO(usuario);
+        Usuario usuario = new Usuario(dto.getNome(), dto.getEmail());
+        return toResponseDTO(repository.save(usuario));
     }
 
     public Page<UsuarioResponseDTO> listar(Pageable pageable) {
@@ -39,12 +39,10 @@ public class UsuarioService {
     }
 
     private UsuarioResponseDTO toResponseDTO(Usuario usuario) {
-        return new UsuarioResponseDTO(
-                usuario.getId(),
+        return new UsuarioResponseDTO(usuario.getId(),
                 usuario.getNome(),
                 usuario.getDataCriacao(),
                 usuario.getEmail()
         );
     }
-
 }
